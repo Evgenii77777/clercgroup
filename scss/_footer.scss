@@ -1,0 +1,105 @@
+.footer {
+
+    padding:  30px;
+  background: $second-bg-color;
+
+  &__container {
+    @include flex(row, space-between, center, 10px);
+    max-width: 1232px;
+      width: 100%;
+      margin: 0 auto;
+  }
+
+  &__copyright {
+    color: $main-text-color;
+  }
+
+  &__payments {
+    @include flex(row, flex-start, center, 38px);
+    padding: 0 40px;
+    border-left: 1px solid $border-color;
+    border-right: 1px solid $border-color;
+  }
+
+  &__payment {
+    @include flex(row, flex-start, center, 10px);
+    color: $border-color;
+
+    img {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &__contacts {
+    @include flex(row, flex-start, center, 38px);
+  }
+
+  &__contact-link {
+    padding-left: 30px;
+    position: relative;
+    color: $border-color;
+    transition: color 0.25s;
+
+    &::before {
+      content: "";
+      width: 20px;
+      height: 20px;
+      @include position-absolute(50%, null, null, 0);
+      transform: translate(0, -50%);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+
+    &--email::before {
+      background-image: url(../assets/png/mail.png);
+    }
+
+    &--vk::before {
+      background-image: url(../assets/png/vk.png);
+    }
+  }
+
+  @include media-max($desktop) {
+   
+      padding: 20px ;
+
+    &__payments,
+    &__contacts {
+      gap: 20px;
+    }
+
+    &__payments {
+      padding: 0 20px;
+    }
+
+    &__contact-link {
+      padding-left: 25px;
+    }
+
+    &__payment {
+      gap: 6px;
+    }
+
+  }
+
+  @include media-max($tablet-large) {
+   
+    
+    
+    &__container {
+
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+  }
+
+  @include media-max($mobile) {
+padding: 20px 10px;
+    &__container {
+      flex-direction: column-reverse;
+    }
+  }
+} 

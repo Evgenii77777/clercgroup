@@ -1,0 +1,330 @@
+@import 'variables';
+@import 'mixins';
+@import 'hero';
+@import 'order';
+@import 'footer';
+@import 'form';
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('../fonts/Raleway/static/Raleway-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('../fonts/Raleway/static/Raleway-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('../fonts/Raleway/static/Raleway-SemiBold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('../fonts/Raleway/static/Raleway-Bold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('../fonts/Lato/Lato-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('../fonts/Lato/Lato-Bold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  font-family: $main-font;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1;
+  color: $main-text-color;
+  background: $main-bg-color;
+  overflow-x: hidden;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: $main-text-color;
+  transition: $transition-default;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: $transition-default;
+}
+
+.container {
+  max-width: 1232px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 120px 30px;
+
+  @include media-max($desktop) {
+    padding: 80px 20px;
+  }
+
+  @include media-max($mobile) {
+    padding: 40px 10px;
+  }
+}
+
+.header {
+  width: 100%;
+  position: fixed;
+  padding: 32px 0;
+  z-index: 10;
+  background: $main-bg-color;
+
+  &__container {
+    @include flex(row, space-between, center);
+    padding: 0 30px;
+  }
+
+  &__logo {
+    font-family: $second-font;
+    font-weight: 800;
+    font-size: 28px;
+    text-transform: uppercase;
+  }
+
+  &__menu {
+    @include flex(row, flex-start, center, 60px);
+  }
+
+  &__menu-link {
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: color 0.25s;
+  }
+
+  @include media-max($desktop) {
+    padding: 20px 0;
+
+    &__container {
+      padding: 0 20px;
+    }
+
+    &__logo {
+      font-size: 24px;
+    }
+  }
+
+  @include media-max($mobile) {
+    padding: 10px 0;
+
+    &__logo {
+      font-size: 20px;
+    }
+
+    &__menu {
+      flex-direction: column;
+      gap: 10px;
+      font-size: 16px;
+    }
+  }
+}
+
+
+#nav-menu {
+  width: 320px;
+  padding: 40px 40px 40px 32px;
+  position: absolute;
+  top: 100%;
+  right: -320px;
+  @include flex(column, flex-start, stretch, 30px);
+  background: $main-bg-color;
+  z-index: 999;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0px 4px 20px 0px $shadow-color;
+  transition: right 0.3s ease;
+
+  &.open {
+    right: 0;
+  }
+}
+
+.burger {
+  width: 38px;
+  height: 38px;
+  padding: 12px 10px;
+  position: relative;
+  z-index: 10;
+  @include flex(column, space-between);
+  border-radius: 3px;
+  display: none;
+
+  span {
+    width: 100%;
+    height: 2px;
+    display: block;
+    background: $accent-color;
+    transition: $transition-default;
+    border-radius: 2px;
+
+    &:nth-child(2) {
+      width: 80%;
+    }
+  }
+
+  &.active {
+    span {
+      &:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+
+      &:nth-child(2) {
+        opacity: 0;
+      }
+
+      &:nth-child(3) {
+        transform: rotate(-45deg) translate(3px, -3px);
+      }
+    }
+  }
+    @include media-max($mobile) {
+      display: flex;
+    }
+}
+
+.text--accent {
+  color: $accent-color;
+}
+
+.link--accent {
+  &:hover,
+  &:focus {
+    color: $accent-color;
+  }
+}
+
+.mob--hidd {
+  @include media-max($mobile) {
+    display: none;
+  }
+}
+
+@keyframes slideFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.text {
+  &--right {
+    display: inline-block;
+    opacity: 0;
+    transform: translateX(100px);
+
+    &.animate {
+      animation: slideFromRight 0.8s ease forwards;
+    }
+  }
+
+  &--left {
+    display: inline-block;
+    opacity: 0;
+    transform: translateX(-100px);
+
+    &.animate {
+      animation: slideFromLeft 0.8s ease forwards;
+    }
+  }
+}
+
+.button {
+  max-width: 184px;
+  width: 100%;
+  padding: 15px;
+  text-align: center;
+  text-transform: uppercase;
+  border-radius: 4px;
+  transition: $transition-default;
+
+  &--primary {
+    color: $main-text-color;
+    background: $accent-color;
+    border: 1px solid $main-text-color;
+
+    &:hover,
+    &:focus {
+      color: $second-text-color;
+      background: $main-text-color;
+      border: 1px solid #6f6d7b;
+    }
+  }
+
+  &--secondary {
+    color: $second-text-color;
+    background: $main-text-color;
+    border: 1px solid #6f6d7b;
+
+    &:hover,
+    &:focus {
+      color: $main-text-color;
+      background: $accent-color;
+      border: 1px solid $main-text-color;
+    }
+  }
+} 
+.wrap{
+  display: none;
+  @include media-max($mobile) {
+    display: flex;}
+}

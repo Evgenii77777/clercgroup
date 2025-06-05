@@ -1,0 +1,177 @@
+.order {
+  @include bg-image('../assets/img/order__bg.webp');
+
+  &__title {
+    font-weight: 800;
+    font-size: 36px;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  &__description {
+    margin: 30px 0 80px;
+    font-size: 18px;
+    text-align: center;
+    color: #bbbbbb;
+  }
+
+  &__steps {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 30px;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  &__step {
+    position: relative;
+    @include flex(column, center, center, 20px);
+
+    &:not(:last-child)::after {
+      content: "";
+      @include position-absolute(50px, -70px);
+      width: 110px;
+      height: 6px;
+      background-image: url(../assets/png/points.png);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      z-index: 1;
+    }
+
+    &-icon {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      @include flex(row, center, center);
+      background: $accent-color;
+      border: 5px solid #286690;
+      border-radius: 50%;
+      z-index: 2;
+
+      img {
+        width: 55px;
+        height: 55px;
+      }
+    }
+
+    &-text {
+      width: calc(100% - 22px);
+      margin-bottom: auto;
+    }
+  }
+
+  @include media-max($desktop) {
+    &__title {
+      font-size: 32px;
+    }
+
+    &__step-icon {
+      width: 80px;
+      height: 80px;
+
+      img {
+        width: 45px;
+        height: 45px;
+      }
+    }
+
+    &__step:not(:last-child)::after {
+      top: 38px;
+    }
+  }
+
+  @include media-max($tablet-large) {
+    &__step-icon {
+      width: 60px;
+      height: 60px;
+
+      img {
+        width: 35px;
+        height: 35px;
+      }
+    }
+
+    &__step:not(:last-child)::after {
+      top: 28px;
+      right: -56px;
+      width: 90px;
+    }
+
+    &__steps {
+      font-size: 14px;
+    }
+  }
+
+  @include media-max($tablet) {
+    &__step:not(:last-child)::after {
+      top: 28px;
+      right: -48px;
+      width: 70px;
+    }
+  }
+
+  @include media-max($mobile) {
+    &__title {
+      font-size: 24px;
+    }
+
+    &__description {
+      margin: 20px 0 40px;
+      font-size: 14px;
+    }
+
+    &__steps {
+      gap: 10px;
+    }
+
+    &__step {
+      &:not(:last-child)::after {
+        top: 22px;
+        right: -30px;
+        width: 50px;
+      }
+
+      &-icon {
+        width: 50px;
+        height: 50px;
+
+        img {
+          width: 25px;
+          height: 25px;
+        }
+      }
+    }
+  }
+
+  @include media-max($mobile-medium) {
+    &__steps {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+    }
+
+    &__step {
+      max-width: 100px;
+
+      &:not(:last-child)::after {
+        rotate: 90deg;
+        top: 115%;
+        right: 34%;
+        width: 30px;
+      }
+
+      &-icon {
+        width: 70px;
+        height: 70px;
+
+        img {
+          width: 35px;
+          height: 35px;
+        }
+      }
+    }
+  }
+} 

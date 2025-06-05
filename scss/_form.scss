@@ -1,0 +1,253 @@
+.form {
+  margin-top: 80px;
+  @include flex(column, flex-start, stretch, 30px);
+
+  &__row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+
+  &__input {
+    padding: 12px 10px;
+    font-size: 18px;
+    color: $second-text-color;
+    background: rgba(255, 255, 255, 0.85);
+    border: 2px solid $main-text-color;
+    border-radius: 4px;
+
+    &::placeholder {
+      color: $second-text-color;
+    }
+  }
+
+  &__submit.button {
+    max-width: 370px;
+    margin: 10px auto 0;
+    padding: 18px;
+    font-weight: 600;
+    font-size: 15px;
+  }
+
+  @include media-max($mobile) {
+    margin-top: 40px;
+    gap: 20px;
+
+    &__row {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-areas: "a b" "c d" "e e";
+      gap: 20px;
+    }
+
+    &__submit.button {
+      max-width: 300px;
+      padding: 14px;
+      font-size: 14px;
+    }
+  }
+
+  @include media-max($mobile-small) {
+    &__row {
+      grid-template-columns: 1fr;
+      grid-template-areas: "a" "b" "c" "d" "e";
+    }
+
+    &__submit.button {
+      max-width: 100% ;
+    }
+  }
+}
+
+.select {
+  position: relative;
+  flex: 1;
+  user-select: none;
+  color: $second-text-color;
+
+  &__header {
+    padding: 12px 10px;
+    position: relative;
+    font-size: 18px;
+    color: $second-text-color;
+    background: rgba(255, 255, 255, 0.85);
+    border: 2px solid $main-text-color;
+    border-radius: 4px;
+    transition: $transition-default;
+    cursor: pointer;
+
+    &::after {
+      content: "";
+      width: 20px;
+      height: 20px;
+      @include position-absolute(50%, 10px);
+      transform: translate(0, -50%);
+      background-image: url(../assets/svg/arrow.svg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+
+    &--open {
+      color: $main-text-color;
+      background: $second-bg-color;
+      border: 2px solid $second-bg-color;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+
+      &::after {
+        background-image: url(../assets/svg/arrow-white.svg);
+        rotate: 180deg;
+        transform: translate(0, 50%);
+      }
+    }
+  }
+
+  &__list {
+    max-height: 200px;
+    padding: 20px 10px;
+    position: absolute;
+    top: 92%;
+    left: 0;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    overflow-y: auto;
+    color: $main-text-color;
+    background: #10101d;
+    border: 1px solid #3d4050;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    z-index: 10;
+
+    &--visible {
+      display: flex;
+    }
+  }
+
+  &__item {
+    font-size: 18px;
+    line-height: 34px;
+    cursor: pointer;
+    transition: color 0.25s;
+  }
+
+  @include media-max($tablet-large) {
+    &__header,
+    &__item {
+      font-size: 16px;
+    }
+  }
+}
+
+.range {
+  grid-column: span 2;
+  @include flex(column, flex-start, stretch, 16px);
+
+  &__header {
+    @include flex(row, space-between, center);
+    font-size: 18px;
+  }
+
+  &__value {
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  &__input {
+    width: 100%;
+    height: 6px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 3px;
+    outline: none;
+
+    &::-webkit-slider-thumb {
+      width: 24px;
+      height: 24px;
+      -webkit-appearance: none;
+      appearance: none;
+      background: $accent-color;
+      border: 3px solid #286690;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    &::-moz-range-thumb {
+      width: 24px;
+      height: 24px;
+      background: $accent-color;
+      border: 3px solid #286690;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  }
+
+  @include media-max($tablet-large) {
+    &__header {
+      font-size: 16px;
+    }
+  }
+
+  @include media-max($mobile) {
+    grid-area: e;
+  }
+}
+
+.file {
+  position: relative;
+
+  &__input {
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  &__label {
+    display: block;
+    padding: 12px 10px;
+    font-size: 18px;
+    text-align: center;
+    color: $second-text-color;
+    background: $main-text-color;
+    border: 2px solid $accent-color;
+    border-radius: 4px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: pointer;
+  }
+
+  &__text {
+    padding-left: 30px;
+    position: relative;
+
+    &::before {
+      content: "";
+      width: 20px;
+      height: 16px;
+      @include position-absolute(50%, null, null, 0);
+      transform: translate(0, -50%);
+      background-image: url(../assets/svg/sheets.svg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+  }
+
+  @include media-max($tablet-large) {
+    &__label {
+      font-size: 16px;
+    }
+  }
+
+  @include media-max($mobile) {
+    &__input {
+      grid-area: d;
+    }
+  }
+} 

@@ -132,7 +132,9 @@
         right: -30px;
         width: 50px;
       }
-
+      &-text {
+        width: 100%;
+      }
       &-icon {
         width: 50px;
         height: 50px;
@@ -154,12 +156,12 @@
     }
 
     &__step {
-      max-width: 100px;
+      max-width: 150px;
 
       &:not(:last-child)::after {
         rotate: 90deg;
         top: 115%;
-        right: 34%;
+        right: 40%;
         width: 30px;
       }
 

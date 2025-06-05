@@ -93,7 +93,19 @@ button {
   cursor: pointer;
   transition: $transition-default;
 }
+::-webkit-scrollbar {
+  width: 6px;
+}
 
+::-webkit-scrollbar-track {
+  background: $second-bg-color;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $accent-color;
+  border-radius: 3px;
+}
 .container {
   max-width: 1232px;
   width: 100%;

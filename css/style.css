@@ -691,6 +691,20 @@ button {
   transition: all 0.3s ease;
 }
 
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #3d4050;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #3e9cdc;
+  border-radius: 3px;
+}
+
 .container {
   max-width: 1232px;
   width: 100%;
